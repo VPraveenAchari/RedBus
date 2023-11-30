@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using RedBus.Utilities;
 
 namespace RedBus.PageObject
 {
@@ -16,17 +17,17 @@ namespace RedBus.PageObject
             this.driver = driver;
             PageFactory.InitElements(driver, this);
         }
-        [FindsBy(How = How.XPath, Using = "//img[@title='UPSRTC Bus Online Booking']")]
+        [FindsBy(How = How.XPath, Using = Constants.Image)]
         IWebElement Image;//e
-        [FindsBy(How = How.XPath, Using = "//a[@class='PrivatePartners__ViewAll-sc-2695bf-2 dmxFif']")]
+        [FindsBy(How = How.XPath, Using = Constants.ViewAllButton)]
         IWebElement ViewAllButton;//element
-        [FindsBy(How = How.XPath, Using = "//ul[@class='D112_ul']/descendant::a[9]")]
+        [FindsBy(How = How.XPath, Using = Constants.IButton)]
         IWebElement IButton;
-        [FindsBy(How = How.XPath, Using = "//ul[@class='D112_ul']/descendant::a[18]")]
+        [FindsBy(How = How.XPath, Using = Constants.RButton)]
         IWebElement RButton;
-        [FindsBy(How = How.XPath, Using = "//ul[@class='D112_ul']/descendant::a[1]")]
+        [FindsBy(How = How.XPath, Using = Constants.AButton)]
         IWebElement AButton;
-        [FindsBy(How = How.XPath, Using = "//a[text()='3']")]
+        [FindsBy(How = How.XPath, Using = Constants.Page3)]
         IWebElement Page3;
 
         public IWebElement getImageButton() { return Image; }
