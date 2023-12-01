@@ -16,50 +16,38 @@ namespace RedBus.Tests
         public void RedBusTest()
         {
             POMClass p = new POMClass(getDriver());
-            IWebElement element = p.getImageButton();
-            IWebElement e = p.getViewAllButton();
+            IWebElement image = p.getImageButton();
+            IWebElement v = p.getViewAllButton();
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView(true)", element);
+            js.ExecuteScript("arguments[0].scrollIntoView(true)",image);
             WebDriverWait wait = new(driver, TimeSpan.FromSeconds(5));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(e));
-            e.Click();
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(v));
+            v.Click();
             p.getIButton().Click();
+            PrintValues();
             p.getRButton().Click();
+            js.ExecuteScript("window.scrollBy(0,1500)");
+            Thread.Sleep(3000);
+            p.getPage3().Click();
+            PrintValues();
             p.getAButton().Click();
             js.ExecuteScript("window.scrollBy(0,1500)");
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             p.getPage3().Click();
-           /*
-            //li[@class='D113_item']
-            IList<IWebElement> list = driver.FindElements(By.XPath("//li[@class='D113_item']"));
-            foreach (IWebElement ele in list)
-            {
-                TestContext.Progress.WriteLine(ele);
-            }*/
+            PrintValues();
         }
-        [Test]
-        public void RedBusTest1()
+        public void PrintValues()
         {
-            POMClass p = new POMClass(getDriver());
-            IWebElement element = p.getImageButton();
-            IWebElement e = p.getViewAllButton();
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            js.ExecuteScript("arguments[0].scrollIntoView(true)", element);
-            WebDriverWait wait = new(driver, TimeSpan.FromSeconds(5));
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(e));
-            e.Click();
-            p.getIButton().Click();
-            p.getRButton().Click();
-            p.getAButton().Click();
-            js.ExecuteScript("window.scrollBy(0,1500)");
-            //Thread.Sleep(5000);
-            p.getPage3().Click();
-            /*//li[@class='D113_item']
-            IList<IWebElement> list = driver.FindElements(By.XPath("//li[@class='D113_item']"));
-            foreach (IWebElement ele in list)
+            IList<IWebElement> element = driver.FindElements(By.XPath("//li[@class='D113_item']"));
+            int i = 0;
+            foreach (IWebElement ele in element)
             {
-                TestContext.Progress.WriteLine(ele);
-            }*/
+                String busname = ele.Text;
+                TestContext.Progress.WriteLine(busname);
+                i++;
+            }
         }
     }
 }
+
+

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using RedBus.Utilities;
 
@@ -18,9 +13,9 @@ namespace RedBus.PageObject
             PageFactory.InitElements(driver, this);
         }
         [FindsBy(How = How.XPath, Using = Constants.Image)]
-        IWebElement Image;//e
+        IWebElement Image;
         [FindsBy(How = How.XPath, Using = Constants.ViewAllButton)]
-        IWebElement ViewAllButton;//element
+        IWebElement ViewAllButton;
         [FindsBy(How = How.XPath, Using = Constants.IButton)]
         IWebElement IButton;
         [FindsBy(How = How.XPath, Using = Constants.RButton)]

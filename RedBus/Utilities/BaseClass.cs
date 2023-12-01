@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Configuration;
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using OpenQA.Selenium;
@@ -21,6 +16,7 @@ namespace RedBus.Utilities
         ExtentReports extent;
         ExtentTest test;
         String browserName;
+       
         [OneTimeSetUp] 
         public void Setup() 
         {
@@ -85,7 +81,7 @@ namespace RedBus.Utilities
             }
             else if(status==TestStatus.Passed)
             {
-
+                
             }
             extent.Flush();
             driver.Quit();
