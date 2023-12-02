@@ -1,4 +1,5 @@
 ﻿using System;
+using OpenQA.Selenium;
 
 namespace RedBus.Utilities
 {
@@ -9,6 +10,6 @@ namespace RedBus.Utilities
         public const string IButton = "//a[text()='I']";
         public const string RButton = "//a[text()='R']";
         public const string AButton = "//a[text()='A']";
-        public const string Page3 = "//a[text()='3']";
+        public const string Page3   = "//a[text()='3']";
     }
 }

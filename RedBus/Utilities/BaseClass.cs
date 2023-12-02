@@ -90,8 +90,7 @@ namespace RedBus.Utilities
         {
             ITakesScreenshot ts = (ITakesScreenshot)driver;
             var screenshot=ts.GetScreenshot().AsBase64EncodedString;
-           return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, screenshotName).Build();
-
+            return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, screenshotName).Build();
         }
     }
 }
