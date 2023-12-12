@@ -1,5 +1,4 @@
-﻿using OpenQA.Selenium.Support.UI;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using RedBus.PageObject;
 using RedBus.Utilities;
 

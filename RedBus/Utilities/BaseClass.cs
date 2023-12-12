@@ -7,7 +7,6 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using WebDriverManager.DriverConfigs.Impl;
 using NUnit.Framework.Interfaces;
-using RedBus.Tests;
 using OpenQA.Selenium.Support.UI;
 using RedBus.PageObject;
 
@@ -18,7 +17,7 @@ namespace RedBus.Utilities
         public static IWebDriver driver;
         ExtentReports extent;
         ExtentTest test;
-        String browserName;
+        string browserName;
        
         [OneTimeSetUp] 
         public void Setup() 
@@ -45,7 +44,7 @@ namespace RedBus.Utilities
             InitBrowser(browserName);
             driver.Url = "https://www.redbus.in/";
             driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(6);
         }
         public void InitBrowser(string browserName)
         {
@@ -83,7 +82,6 @@ namespace RedBus.Utilities
         [TearDown]
         public void AfterTest()
         {
-            RedBusApp r=new RedBusApp();
             var status=TestContext.CurrentContext.Result.Outcome.Status;
             var stackTrace=TestContext.CurrentContext.Result.StackTrace;
             DateTime time=DateTime.Now;
