@@ -7,12 +7,15 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using WebDriverManager.DriverConfigs.Impl;
 using NUnit.Framework.Interfaces;
+using RedBus.Tests;
+using OpenQA.Selenium.Support.UI;
+using RedBus.PageObject;
 
 namespace RedBus.Utilities
 {
     public class BaseClass
     {
-        public IWebDriver driver;
+        public static IWebDriver driver;
         ExtentReports extent;
         ExtentTest test;
         String browserName;
@@ -22,7 +25,7 @@ namespace RedBus.Utilities
         {
             string workingDirectory = Environment.CurrentDirectory;
             string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            String reportPath=projectDirectory + "//report.html";
+            String reportPath=projectDirectory + "//Report.html";
             var htmlReporter=new ExtentHtmlReporter(reportPath);
             extent=new ExtentReports();
             extent.AttachReporter(htmlReporter);
@@ -33,7 +36,6 @@ namespace RedBus.Utilities
         [SetUp]
         public void StartBrowser()
         {
-            
             test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
             browserName = TestContext.Parameters["browserName"];
             if(browserName == null)
@@ -63,13 +65,25 @@ namespace RedBus.Utilities
                     break;
             }
         }
-        public IWebDriver getDriver()
+        public static IWebDriver getDriver()
         {
             return driver;
+        }
+        public void Access()
+        {
+            POMClass p = new POMClass(getDriver());
+            IWebElement image = p.getImageButton();
+            IWebElement v = p.getViewAllButton();
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("arguments[0].scrollIntoView(true)", image);
+            WebDriverWait wait = new(driver, TimeSpan.FromSeconds(5));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(v));
+            v.Click();
         }
         [TearDown]
         public void AfterTest()
         {
+            RedBusApp r=new RedBusApp();
             var status=TestContext.CurrentContext.Result.Outcome.Status;
             var stackTrace=TestContext.CurrentContext.Result.StackTrace;
             DateTime time=DateTime.Now;
@@ -81,7 +95,14 @@ namespace RedBus.Utilities
             }
             else if(status==TestStatus.Passed)
             {
-                
+                IList<IWebElement> element = driver.FindElements(By.XPath("//li[@class='D113_item']"));
+                int i = 0;
+                foreach (IWebElement ele in element)
+                {
+                    String busname = ele.Text;
+                    test.Log(Status.Pass, busname);
+                    i++;
+                }
             }
             extent.Flush();
             driver.Quit();
