@@ -11,7 +11,7 @@ namespace RedBus.Tests
         {
             Access();
             POMClass p = new POMClass(getDriver());
-            p.getIButton().Click();
+            p.IButton.Click();
         }
         [Test]
         public void ROperators()
@@ -19,10 +19,10 @@ namespace RedBus.Tests
             Access();
             POMClass p = new POMClass(getDriver());
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            p.getRButton().Click();
+            p.RButton.Click();
             js.ExecuteScript("window.scrollBy(0,1500)");
             Thread.Sleep(3000);
-            p.getPage3().Click();
+            p.Page3.Click();
         }
         [Test]
         public void AOperators()
@@ -30,10 +30,10 @@ namespace RedBus.Tests
             Access();
             POMClass p = new POMClass(getDriver());
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            p.getAButton().Click();
+            p.AButton.Click();
             js.ExecuteScript("window.scrollBy(0,1500)");
             Thread.Sleep(3000);
-            p.getPage3().Click();
+            p.Page3.Click();
         }
     }
 }

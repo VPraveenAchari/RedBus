@@ -71,8 +71,8 @@ namespace RedBus.Utilities
         public void Access()
         {
             POMClass p = new POMClass(getDriver());
-            IWebElement image = p.getImageButton();
-            IWebElement v = p.getViewAllButton();
+            IWebElement image = p.ImageButton;
+            IWebElement v = p.ViewAllButton;
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript("arguments[0].scrollIntoView(true)", image);
             WebDriverWait wait = new(driver, TimeSpan.FromSeconds(5));

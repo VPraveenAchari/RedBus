@@ -12,24 +12,11 @@ namespace RedBus.PageObject
             this.driver = driver;
             PageFactory.InitElements(driver, this);
         }
-        [FindsBy(How = How.XPath, Using = Constants.Image)]
-        IWebElement Image;
-        [FindsBy(How = How.XPath, Using = Constants.ViewAllButton)]
-        IWebElement ViewAllButton;
-        [FindsBy(How = How.XPath, Using = Constants.IButton)]
-        IWebElement IButton;
-        [FindsBy(How = How.XPath, Using = Constants.RButton)]
-        IWebElement RButton;
-        [FindsBy(How = How.XPath, Using = Constants.AButton)]
-        IWebElement AButton;
-        [FindsBy(How = How.XPath, Using = Constants.Page3)]
-        IWebElement Page3;
-
-        public IWebElement getImageButton() { return Image; }
-        public IWebElement getViewAllButton() { return ViewAllButton; }
-        public IWebElement getIButton() { return IButton; }
-        public IWebElement getRButton() { return RButton; }
-        public IWebElement getAButton() { return AButton; }
-        public IWebElement getPage3() { return Page3; }
+        public IWebElement ImageButton => driver.FindElement(By.XPath("//img[@title='UPSRTC Bus Online Booking']"));
+        public IWebElement ViewAllButton => driver.FindElement(By.XPath("//a[@class='PrivatePartners__ViewAll-sc-2695bf-2 dmxFif']"));
+        public IWebElement IButton => driver.FindElement(By.XPath("//a[text()='I']"));
+        public IWebElement RButton => driver.FindElement(By.XPath("//a[text()='R']"));
+        public IWebElement AButton => driver.FindElement(By.XPath("//a[text()='A']"));
+        public IWebElement Page3 => driver.FindElement(By.XPath("//a[text()='3']"));
     }
 }
